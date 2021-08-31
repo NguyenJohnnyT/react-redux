@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export const productSlice = createSlice({
-  name: 'product',
+  name: 'products',
   initialState: {
     value: [],
   },
