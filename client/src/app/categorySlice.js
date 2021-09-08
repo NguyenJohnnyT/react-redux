@@ -7,13 +7,30 @@ export const categorySlice = createSlice({
     currentCategory: ''
   },
   reducers: {
-    updateCategories: (state, action) => {
-      state.value = [...action.categories]
+    updateCategories: {
+      reducer (state, action) {
+      state.value = [...action.payload]
+      },
+      prepare (categories) {
+        if (categories) {
+          var categoriesList = categories
+        } else {var categoriesList = []};
+        return {
+          payload: categoriesList
+        }
+     },
     },
-    updateCurrentCategory: (state, action) => {
-      state.currentCategory = action.currentCategory;
-    }
-  }
-})
+    updateCurrentCategory: {
+      reducer (state, action) {
+        state.currentCategory = action.payload;
+      },
+      prepare (currentCategory) {
+        return {
+          payload: currentCategory
+        };
+      },
+    },
+  },
+});
 
 export default categorySlice.reducer;
