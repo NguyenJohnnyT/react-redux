@@ -63,7 +63,7 @@ export const cartReducer = createSlice({
         };
       },
     },
-    
+
     toggleCart: (state) => {
       state.cartOpen = !state.cartOpen;
     },
@@ -75,4 +75,7 @@ export const cartReducer = createSlice({
   }
 })
 
+export const { addToCart, addMultipleToCart, updateCartQty, removeFromCart, toggleCart, clearCart } = cartSlice.actions;
+export const selectIsCartOpen = state => state.cart.cartOpen;
+export const selectCartItems = state => state.cart.value;
 export default cartSlice.reducer;
