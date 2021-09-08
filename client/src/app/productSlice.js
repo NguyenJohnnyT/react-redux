@@ -6,10 +6,22 @@ export const productSlice = createSlice({
     value: [],
   },
   reducers: {
-    updateProducts(state,action) {
+    updateProducts: {
+      reducer (state,action) {
       state.value = [...action.products];
-    }
-  }
+    },
+      prepare (products) {
+        if (products) {
+          var productList = products
+        } else {
+          var productList = []
+        }
+        return {
+          payload: productList
+        }
+      },
+    },
+  },
 })
 
 export default productSlice.reducer;
