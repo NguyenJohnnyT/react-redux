@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import { useStoreContext } from '../../utils/GlobalState';
-import {
-  UPDATE_CATEGORIES,
-  UPDATE_CURRENT_CATEGORY,
-} from '../../utils/actions';
 import { QUERY_CATEGORIES } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 
+//!CONTEXT
+// import { useStoreContext } from '../../utils/GlobalState';
+// import {
+//   UPDATE_CATEGORIES,
+//   UPDATE_CURRENT_CATEGORY,
+// } from '../../utils/actions';
+//| REDUX
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  updateCurrentCategory,
+  selectCategories,
+  updateCategories
+} from '../../app/categorySlice';
+
 function CategoryMenu() {
-  const [state, dispatch] = useStoreContext();
+  const dispatch = useDispatch();
+  const categories = useSelector(selectCategories)
 
   const { categories } = state;
 
@@ -17,28 +27,19 @@ function CategoryMenu() {
 
   useEffect(() => {
     if (categoryData) {
-      dispatch({
-        type: UPDATE_CATEGORIES,
-        categories: categoryData.categories,
-      });
+      dispatch(updateCategories(categoryData.categories));
       categoryData.categories.forEach((category) => {
         idbPromise('categories', 'put', category);
       });
     } else if (!loading) {
       idbPromise('categories', 'get').then((categories) => {
-        dispatch({
-          type: UPDATE_CATEGORIES,
-          categories: categories,
-        });
+        dispatch(updateCategories(categories));
       });
     }
   }, [categoryData, loading, dispatch]);
 
   const handleClick = (id) => {
-    dispatch({
-      type: UPDATE_CURRENT_CATEGORY,
-      currentCategory: id,
-    });
+    dispatch(updateCurrentCategory(id));
   };
 
   return (
