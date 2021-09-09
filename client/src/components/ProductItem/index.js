@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
 import { idbPromise } from "../../utils/helpers";
 //!CONTEXT
-import { useStoreContext } from "../../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+// import { useStoreContext } from "../../utils/GlobalState";
+// import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 //|REDUX
 import { useSelector, useDispatch } from 'react-redux';
 import {

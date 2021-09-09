@@ -29,7 +29,7 @@ import {
 function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
-
+  const [currentProduct, setCurrentProduct] = useState({});
   const { loading, data } = useQuery(QUERY_PRODUCTS);
   const cart = useSelector(selectCartItems);
   const products = useSelector(selectProducts);

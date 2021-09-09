@@ -1,6 +1,6 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
-export const cartReducer = createSlice({
+export const cartSlice = createSlice({
   name: 'cart',
   initialState: {
     value: [],

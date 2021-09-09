@@ -8,7 +8,7 @@ import categoryReducer from './categorySlice';
 export default configureStore({
   reducer: {
     cart: cartReducer,
-    product: productReducer,
-    category: categoryReducer
+    products: productReducer,
+    categories: categoryReducer
   }
 });

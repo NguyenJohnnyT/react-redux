@@ -1,20 +1,21 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
 
 export const productSlice = createSlice({
   name: 'products',
   initialState: {
-    value: [],
+    value: []
   },
   reducers: {
     updateProducts: {
-      reducer (state,action) {
-      state.value = [...action.products];
-    },
+      reducer (state, action) {
+        state.value = [...action.payload];
+      },
       prepare (products) {
+        let productList
         if (products) {
-          var productList = products
+          productList = products
         } else {
-          var productList = []
+          productList = []
         }
         return {
           payload: productList
