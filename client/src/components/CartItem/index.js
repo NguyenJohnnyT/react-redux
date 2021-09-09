@@ -12,10 +12,9 @@ import {
 } from '../../app/cartSlice';
 
 const CartItem = ({ item }) => {
-
   const dispatch = useDispatch();
 
-  const removeFromCart = item => {
+  const removeFromCartFxn = item => {
     dispatch(removeFromCart(item._id));
     idbPromise('cart', 'delete', { ...item });
 
@@ -55,7 +54,7 @@ const CartItem = ({ item }) => {
           <span
             role="img"
             aria-label="trash"
-            onClick={() => removeFromCart(item)}
+            onClick={() => removeFromCartFxn(item)}
           >
             🗑️
           </span>

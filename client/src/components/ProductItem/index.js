@@ -25,10 +25,10 @@ function ProductItem(item) {
     quantity
   } = item;
 
-  const addToCart = () => {
+  const addToCartFxn = () => {
     const itemInCart = cart.find((cartItem) => cartItem._id === _id)
     if (itemInCart) {
-      dispatch(updateCartQuantity(_id, parseInt(itemInCart.purchaseQuantity) + 1));
+      dispatch(updateCartQty(_id, parseInt(itemInCart.purchaseQuantity) + 1));
       idbPromise('cart', 'put', {
         ...itemInCart,
         purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
@@ -52,7 +52,7 @@ function ProductItem(item) {
         <div>{quantity} {pluralize("item", quantity)} in stock</div>
         <span>${price}</span>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
+      <button onClick={addToCartFxn}>Add to cart</button>
     </div>
   );
 }
